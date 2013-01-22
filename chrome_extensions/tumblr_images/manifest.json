@@ -1,0 +1,12 @@
+{
+  "name": "Less sucky tumblr image download",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Download highest res version of a tumblr image just by clicking on it.",
+  "permissions": ["http://*.tumblr.com/*", "https://*.tumblr.com/*"],
+  "content_scripts": [{
+    "matches": ["http://*.tumblr.com/*", "https://*.tumblr.com/*"],
+    "js": ["js.js"],
+    "all_frames": true
+  }]
+}
