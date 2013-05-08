@@ -63,9 +63,14 @@
   //Bonus enhancement
   var endsWithImg = new RegExp("\\.(jpg|jpeg|png|gif)$");
   var imgurAlbum = new RegExp("^http://imgur.com/a/");
+  var imgurReddit = new RegExp("^http://imgur.com/r/");
+  var stripReddit = new RegExp("^http://imgur.com/r/[^/]+/(.*?)$");
   var links = window.document.querySelectorAll('a[href^="http://imgur.com"]');
   for(var i = 0; i < links.length; i++) {
-    if(!imgurAlbum.test(links[i].href) && !endsWithImg.test(links[i].href)) links[i].href = links[i].href + ".jpg";
+    if(!imgurAlbum.test(links[i].href) && !endsWithImg.test(links[i].href)) {
+      if(imgurReddit.test(links[i].href)) links[i].href = links[i].href.replace(stripReddit, "http://i.imgur.com/$1.jpg");
+      else links[i].href = links[i].href + ".jpg";
+    }
   }
 
   var links = window.document.querySelectorAll("a[href$=jpg], a[href$=jpeg], a[href$=png], a[href$=gif]");
