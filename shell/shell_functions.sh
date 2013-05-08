@@ -2,14 +2,29 @@
 
 export BROWSER_USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1081.2 Safari/536.5"
 
-#Requires wget (sudo apt-get install wget)
+##Requires puf (sudo apt-get install puf)
 function mirror_site() {
-  wget -r -k -p -np -U "$BROWSER_USER_AGENT" "$@"
+  puf -pr -r -xg -c -U "$BROWSER_USER_AGENT" "$@"
+}
+
+#Requires wget (sudo apt-get install wget)
+function mirror_site_wget() {
+  wget -r -p -np -k -U "$BROWSER_USER_AGENT" "$@"
+}
+
+#Requires wget (sudo apt-get install wget)
+function mirror_site_wget_trusted() {
+  wget -r -l 100 -p -np --trust-server-names -E -k -U "$BROWSER_USER_AGENT" "$@"
 }
 
 #Requires aria2 (sudo apt-get install aria2)
 function download_urls() {
-  aria2c -s 1 -j 4 -i "$@"
+  aria2c -s 1 -j 4 -c -i "$@"
+}
+
+#Requires aria2 (sudo apt-get install aria2)
+function download_videos() {
+  aria2c -s 1 -j 2 -i "$@"
 }
 
 #Requires ffmpeg built with mp3 encoding support (Add universe repository to your apt sources, then sudo apt-get install ffmpeg libavcodec-extra-53)
@@ -41,4 +56,9 @@ function activate_vpn() {
   sudo ifconfig tun0 mtu 1300
   sudo ifconfig eth1 mtu 1300
   sudo ifconfig wlan0 mtu 1300
+}
+
+
+function crush_video() {
+  ffmpeg -i "$@" -c:a libfaac -b:a 96k -c:v libx264 -crf 26 -preset slower -r:v 24 "$@.mp4"
 }
