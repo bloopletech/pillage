@@ -1,0 +1,18 @@
+#tumblr_images_extension_output {
+  display: block;
+  width: 300px;
+  height: 100px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin-left: -150px;
+  z-index: 100000;
+  opacity: 0.2;
+}
+
+#tumblr_images_extension_output:hover {
+  opacity: 1.0;
+  width: 800px;
+  height: 600px;
+  margin-left: -400px;
+}

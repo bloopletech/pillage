@@ -3,9 +3,10 @@
   "version": "1.0",
   "manifest_version": 2,
   "description": "Download highest res version of a tumblr image just by clicking on it.",
-  "permissions": ["http://*.tumblr.com/*", "https://*.tumblr.com/*"],
+  "permissions": ["http://*.tumblr.com/archive*", "https://*.tumblr.com/archive*"],
   "content_scripts": [{
-    "matches": ["http://*.tumblr.com/*", "https://*.tumblr.com/*"],
+    "matches": ["http://*.tumblr.com/archive*", "https://*.tumblr.com/archive*"],
+    "css": ["css.css"],
     "js": ["js.js"],
     "all_frames": true
   }]

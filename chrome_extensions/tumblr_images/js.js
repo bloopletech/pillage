@@ -1,14 +1,13 @@
 (function() {
+  var textarea = document.createElement("textarea");
+  textarea.id = "tumblr_images_extension_output";
+  document.body.appendChild(textarea);
+
   var image_sizes = ['1280', '500', '400', '250', '100'];
   var images_regex = new RegExp("_(" + image_sizes.join("|") + ")\\.(jpg|png|gif)$");
 
   function download_url(src) {
-    var a = document.createElement("a");
-    a.download = "";
-    a.href = src;
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
+    textarea.value += src + "\n";
   }
 
   function load_image_variant(src, sizes) {
@@ -47,5 +46,5 @@
   }
 
   fix_images();
-  if(window.document.querySelectorAll("body > div.photoset:first-child, body > div.iframe_controls:first-child").length == 0) window.setInterval(fix_images, 5000);
+  window.setInterval(fix_images, 5000);
 })();
