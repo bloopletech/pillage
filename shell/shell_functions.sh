@@ -27,6 +27,11 @@ function download_videos() {
   aria2c -s 1 -j 2 -i "$@"
 }
 
+#Requires ffmpeg installed if you want the highest quality video from Youtube (sudo apt-get install ffmpeg)
+function download_youtube() {
+  youtube-dl --write-description --write-info-json -o '%(uploader)s/%(playlist)s/%(title)s %(id)s.%(ext)s' "$@"
+}
+
 #Requires ffmpeg built with mp3 encoding support (Add universe repository to your apt sources, then sudo apt-get install ffmpeg libavcodec-extra-53)
 #To get mp3 encoding support:
 #  For Ubuntu 12.10 Quantal and Ubuntu 12.04 Precise:
