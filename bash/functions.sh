@@ -49,3 +49,6 @@ function download_youtube() {
   youtube-dl --write-description --write-info-json -o '%(uploader)s/%(playlist)s/%(title)s %(id)s.%(ext)s' "$@"
 }
 
+function unzip_files() {
+  find -name '*.zip' -exec sh -c 'unzip -d "${1%.*}" "$1"' _ {} \;
+}
