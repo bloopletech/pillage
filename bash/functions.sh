@@ -32,10 +32,14 @@ function mirror_site_wget_trusted() {
   wget -r -l 100 -p -np --trust-server-names -E -k -U "$BROWSER_USER_AGENT" "$@"
 }
 
+function download_url_safe_filename() {
+  # Requires aria2 (sudo apt-get install aria2) and https://github.com/bloopletech/config/blob/master/exec/safe-filename-for-url
+  aria2c -s 1 -j 1 -c -o "$(safe-filename-for-url "$1")" "$1"
+}
+
 function download_urls() {
-  # Requires aria2 (sudo apt-get install aria2)
-  # See also: http://explainshell.com/explain?cmd=aria2c+-s+1+-j+4+-c+-i+%22%24%40%22
-  aria2c -s 1 -j 4 -c -i "$@"
+  export -f download_url_safe_filename
+  parallel -j 4 -a "$1" download_url_safe_filename
 }
 
 function download_videos() {
