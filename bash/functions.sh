@@ -13,9 +13,10 @@ function mirror_site_wget() {
   # -p: Download prerequisites needed to display page (e.g. CSS needed to render HTML page).
   # -np: Don't ascend above the starting directory.
   # -k: Rewrite links in local files to work locally (i.e. change links to be relative).
+  # -e robots=off: Ignore robots.txt, if the site has has one.
   # -U "$BROWSER_USER_AGENT": Set custom User-Agent.
-  # See also: http://explainshell.com/explain?cmd=wget+-r+-p+-np+-k+-U+%22%24BROWSER_USER_AGENT%22+%22%24%40%22
-  wget -r -p -np -k -U "$BROWSER_USER_AGENT" "$@"
+  # See also: https://explainshell.com/explain?cmd=wget+-r+-p+-np+-k+-e+robots%3Doff+-U+%22%24BROWSER_USER_AGENT%22+%22%24%40%22
+  wget -r -p -np -k -e robots=off -U "$BROWSER_USER_AGENT" "$@"
 }
 
 function mirror_site_wget_trusted() {
@@ -27,9 +28,10 @@ function mirror_site_wget_trusted() {
   # --trust-server-names: Use server's file name as local filename (for redirects).
   # -E: If server returns HTML page, adjust local filename extension to ".html".
   # -k: Rewrite links in local files to work locally (i.e. change links to be relative).
+  # -e robots=off: Ignore robots.txt, if the site has has one.
   # -U "$BROWSER_USER_AGENT": Set custom User-Agent.
-  # See also: http://explainshell.com/explain?cmd=wget+-r+-l+100+-p+-np+--trust-server-names+-E+-k+-U+%22%24BROWSER_USER_AGENT%22+%22%24%40%22
-  wget -r -l 100 -p -np --trust-server-names -E -k -U "$BROWSER_USER_AGENT" "$@"
+  # See also: https://explainshell.com/explain?cmd=wget+-r+-l+100+-p+-np+--trust-server-names+-E+-k+-e+robots%3Doff+-U+%22%24BROWSER_USER_AGENT%22+%22%24%40%22
+  wget -r -l 100 -p -np --trust-server-names -E -k -e robots=off -U "$BROWSER_USER_AGENT" "$@"
 }
 
 function download_url_safe_filename() {
