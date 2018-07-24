@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export BROWSER_USER_AGENT="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1081.2 Safari/536.5"
+export BROWSER_USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
 
 function mirror_site() {
   # Requires puf (sudo apt-get install puf)
